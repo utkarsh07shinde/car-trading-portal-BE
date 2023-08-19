@@ -9,7 +9,7 @@ import com.app.entity.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-	@Query("FROM User u WHERE u.username=:username and u.password=:password")
-	public User validateUser(String username, String password);
+	@Query("FROM User u WHERE u.email=:email and u.password=:password")
+	public User validateUser(String email, String password);
 
 }

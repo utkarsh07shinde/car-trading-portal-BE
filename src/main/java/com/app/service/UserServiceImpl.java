@@ -48,9 +48,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User validateUser(String username, String password) {
+	public User validateUser(String email, String password) {
 		// TODO Auto-generated method stub
-		return userRepository.validateUser(username, password);
+		return userRepository.validateUser(email, password);
 	}
 
 }

@@ -29,7 +29,7 @@ public class UserController {
 		User u = null;
 		
 		
-			u= userService.validateUser(user.getUsername(),user.getPassword());
+			u= userService.validateUser(user.getEmail(),user.getPassword());
 
 		System.out.println(u);
 		

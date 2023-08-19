@@ -11,5 +11,5 @@ public interface UserService {
 	public User findUserById(int theId);
 	public void saveUser(User theUser);
 	public void deleteUserById(int theId);
-	public User validateUser(String username, String password);
+	public User validateUser(String email, String password);
 }
