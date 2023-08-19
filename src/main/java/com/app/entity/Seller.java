@@ -1,4 +1,4 @@
-package com.app.Entity;
+package com.app.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,10 +20,8 @@ public class Seller {
 	private String sellerName;
 	@Column(name = "email")
 	private String email;
-	@Column(name = "username")
-	private String username;
-	@Column(name = "password")
-	private String password;
+	@Column(name="userId")
+	private int userId;
 	@Column(name = "address")
 	private String address;
 	@Column(name = "city")
@@ -41,8 +39,6 @@ public class Seller {
 		this.sellerId = sellerId;
 		this.sellerName = sellerName;
 		this.email = email;
-		this.username = username;
-		this.password = password;
 		this.address = address;
 		this.city = city;
 		this.phone = phone;
@@ -72,20 +68,14 @@ public class Seller {
 		this.email = email;
 	}
 
-	public String getUsername() {
-		return username;
+
+
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public String getAddress() {

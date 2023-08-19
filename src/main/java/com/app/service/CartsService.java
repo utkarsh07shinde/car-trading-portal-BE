@@ -2,8 +2,8 @@ package com.app.service;
 
 import java.util.List;
 
-import com.app.Entity.Cars;
-import com.app.Entity.Carts;
+import com.app.entity.Cars;
+import com.app.entity.Carts;
 
 public interface CartsService {
 	

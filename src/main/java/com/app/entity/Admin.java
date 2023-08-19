@@ -14,16 +14,14 @@ public class Admin {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="Id")
+	@Column(name="adminId")
 	private int adminId ;
 	@Column(name="adminname")
 	private String adminname;
 	@Column(name="email")
 	private String email;
-	@Column(name="username")
-	private String username;
-	@Column(name="password")
-	private String password;
+	@Column(name="userId")
+	private int userId;
 	public Admin() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -33,8 +31,7 @@ public class Admin {
 		this.adminId = adminId;
 		this.adminname = adminname;
 		this.email = email;
-		this.username = username;
-		this.password = password;
+		
 	}
 	public int getAdminId() {
 		return adminId;
@@ -54,18 +51,13 @@ public class Admin {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getUsername() {
-		return username;
+	public int getUserId() {
+		return userId;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	
 	
 	
 }

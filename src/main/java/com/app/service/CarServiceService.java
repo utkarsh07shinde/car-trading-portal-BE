@@ -2,8 +2,8 @@ package com.app.service;
 
 import java.util.List;
 
-import com.app.Entity.CarService;
-import com.app.Entity.Cars;
+import com.app.entity.CarService;
+import com.app.entity.Cars;
 
 public interface CarServiceService {
 	

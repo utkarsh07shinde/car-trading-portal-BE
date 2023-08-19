@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.app.Entity.CarService;
-import com.app.Entity.Seller;
+import com.app.entity.CarService;
+import com.app.entity.Seller;
 import com.app.dao.SellerRepository;
 
 @Service
