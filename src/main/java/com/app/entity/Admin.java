@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,8 +22,9 @@ public class Admin {
 	private String adminname;
 	@Column(name="email")
 	private String email;
-	@Column(name="userId")
-	private int userId;
+	@OneToOne
+    @JoinColumn(name = "user_id")
+    private User user_id;
 	public Admin() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -51,12 +54,13 @@ public class Admin {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getUserId() {
-		return userId;
+	public User getUserId() {
+		return user_id;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUserId(User userId) {
+		this.user_id = userId;
 	}
+	
 	
 	
 	

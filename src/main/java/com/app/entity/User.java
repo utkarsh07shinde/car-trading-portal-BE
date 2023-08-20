@@ -15,6 +15,11 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="user_id")
 	private int user_id;
+	
+	@Column(name="firstName")
+	private String firstName;
+	@Column(name="lastName")
+	private String lastName;
 	@Column(name="email")
 	private String email;
 	@Column(name="password")
@@ -53,6 +58,23 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	@Override
+	public String toString() {
+		return "User [user_id=" + user_id + ", firstname=" + firstName + ", lastname=" + lastName + ", email=" + email
+				+ ", password=" + password + "]";
 	}
 	
 	

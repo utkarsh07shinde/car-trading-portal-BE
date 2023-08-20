@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,11 +24,13 @@ public class Carts {
 	@Column(name = "cartDate")
 	private Date cartDate;
 	
-	@Column(name = "buyerId")
-	private int buyerId;
+	@ManyToOne
+    @JoinColumn(name = "buyerId")
+	private Buyer buyerId;
 	
-	@Column(name = "carId")
-	private int carId;
+	@ManyToOne
+    @JoinColumn(name = "car_id")
+	private Cars car_id;
 	
 	@Column(name = "quantity")
 	private int quantity;
@@ -38,12 +42,12 @@ public class Carts {
 		super();
 	}
 
-	public Carts(int cartId, Date cartDate, int buyerId, int carId, int quantity, double totalPrice) {
+	public Carts(int cartId, Date cartDate, Buyer buyerId, Cars carId, int quantity, double totalPrice) {
 		super();
 		this.cartId = cartId;
 		this.cartDate = cartDate;
 		this.buyerId = buyerId;
-		this.carId = carId;
+		this.car_id = carId;
 		this.quantity = quantity;
 		this.totalPrice = totalPrice;
 	}
@@ -64,20 +68,20 @@ public class Carts {
 		this.cartDate = cartDate;
 	}
 
-	public int getBuyerId() {
+	public Buyer getBuyerId() {
 		return buyerId;
 	}
 
-	public void setBuyerId(int buyerId) {
+	public void setBuyerId(Buyer buyerId) {
 		this.buyerId = buyerId;
 	}
 
-	public int getCarId() {
-		return carId;
+	public Cars getCarId() {
+		return car_id;
 	}
 
-	public void setCarId(int carId) {
-		this.carId = carId;
+	public void setCarId(Cars carId) {
+		this.car_id = carId;
 	}
 
 	public int getQuantity() {

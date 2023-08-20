@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,16 +17,22 @@ public class CarImage {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "imageId")
 	private int imageId ; 
-	private int carId;  
+	
+	@ManyToOne
+    @JoinColumn(name = "car_id",referencedColumnName = "car_id")
+	private Cars car_id;  
+	
+	@Column(name="imageUrl")
 	private String imageUrl ;
+	
 	public CarImage() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public CarImage(int imageId, int carId, String imageUrl) {
+	public CarImage(int imageId, Cars carId, String imageUrl) {
 		super();
 		this.imageId = imageId;
-		this.carId = carId;
+		this.car_id = carId;
 		this.imageUrl = imageUrl;
 	}
 	public int getImageId() {
@@ -33,11 +41,11 @@ public class CarImage {
 	public void setImageId(int imageId) {
 		this.imageId = imageId;
 	}
-	public int getCarId() {
-		return carId;
+	public Cars getCarId() {
+		return car_id;
 	}
-	public void setCarId(int carId) {
-		this.carId = carId;
+	public void setCarId(Cars carId) {
+		this.car_id = carId;
 	}
 	public String getImageUrl() {
 		return imageUrl;

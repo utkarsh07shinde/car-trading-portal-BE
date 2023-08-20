@@ -2,11 +2,14 @@ package com.app.entity;
 
 import java.time.Year;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,17 +18,20 @@ public class Cars {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "carId ")
-	private int carId ; 
+	@Column(name = "car_id ")
+	private int car_id ; 
 	
-	@Column(name = "categoryId ")
-	private int categoryId ; 
+	@ManyToOne
+    @JoinColumn(name = "categoryId")
+	private Categories categoryId ; 
 	
-	@Column(name = "brandId  ")
-	private int brandId ; 
+	@ManyToOne
+    @JoinColumn(name = "brandId")
+	private Brands brandId ; 
 	
-	@Column(name = "sellerId")
-	private int sellerId ; 
+	@ManyToOne
+    @JoinColumn(name = "sellerId")
+	private Seller sellerId ; 
 	
 	@Column(name = "model ")
 	private String model ; 
@@ -52,10 +58,10 @@ public class Cars {
 		super();
 	}
 
-	public Cars(int carId, int categoryId, int brandId, int sellerId, String model, Year year, int mileage,
+	public Cars(int carId, Categories categoryId, Brands brandId, Seller sellerId, String model, Year year, int mileage,
 			String color, double price, String fuelType, int kmsDriven) {
 		super();
-		this.carId = carId;
+		this.car_id = carId;
 		this.categoryId = categoryId;
 		this.brandId = brandId;
 		this.sellerId = sellerId;
@@ -69,34 +75,36 @@ public class Cars {
 	}
 
 	public int getCarId() {
-		return carId;
+		return car_id;
 	}
 
 	public void setCarId(int carId) {
-		this.carId = carId;
+		this.car_id = carId;
 	}
 
-	public int getCategoryId() {
+	public Categories getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(int categoryId) {
+	public void setCategoryId(Categories categoryId) {
 		this.categoryId = categoryId;
 	}
 
-	public int getBrandId() {
+	
+
+	public Brands getBrandId() {
 		return brandId;
 	}
 
-	public void setBrandId(int brandId) {
+	public void setBrandId(Brands brandId) {
 		this.brandId = brandId;
 	}
 
-	public int getSellerId() {
+	public Seller getSellerId() {
 		return sellerId;
 	}
 
-	public void setSellerId(int sellerId) {
+	public void setSellerId(Seller sellerId) {
 		this.sellerId = sellerId;
 	}
 

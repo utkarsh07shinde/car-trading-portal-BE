@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,8 +20,9 @@ public class CarService {
 	@Column(name = "serviceId")
 	private int serviceId; 
 	
-	@Column(name = "carId")
-	private int carId ;
+	@ManyToOne
+    @JoinColumn(name = "car_id")
+	private Cars car_id ;
 	
 	@Column(name = "serviceDate ")
 	private Date serviceDate ;
@@ -31,10 +34,10 @@ public class CarService {
 		super();
 	}
 
-	public CarService(int serviceId, int carId, Date serviceDate, double serviceCost) {
+	public CarService(int serviceId, Cars carId, Date serviceDate, double serviceCost) {
 		super();
 		this.serviceId = serviceId;
-		this.carId = carId;
+		this.car_id = carId;
 		this.serviceDate = serviceDate;
 		this.serviceCost = serviceCost;
 	}
@@ -47,12 +50,12 @@ public class CarService {
 		this.serviceId = serviceId;
 	}
 
-	public int getCarId() {
-		return carId;
+	public Cars getCarId() {
+		return car_id;
 	}
 
-	public void setCarId(int carId) {
-		this.carId = carId;
+	public void setCarId(Cars carId) {
+		this.car_id = carId;
 	}
 
 	public Date getServiceDate() {

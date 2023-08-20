@@ -43,4 +43,12 @@ public class UserController {
 		}
 	}
 	
+	@PostMapping("/registerUser")
+	public String registerUser(@RequestBody User theUser)
+	{
+		theUser.setUser_id(0);
+		System.out.println(theUser.toString());
+		userService.saveUser(theUser);
+		return "register succesfully";
+	}
 }

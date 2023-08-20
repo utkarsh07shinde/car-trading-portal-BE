@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,8 +22,9 @@ public class Buyer {
 	private String buyerName;
 	@Column(name = "email")
 	private String email;
-	@Column(name="userId")
-	private int userId;
+	@OneToOne
+    @JoinColumn(name = "user_id")
+    private User user_id;
 	@Column(name = "address")
 	private String address;
 	@Column(name = "city")
@@ -61,11 +64,11 @@ public class Buyer {
 		this.email = email;
 	}
 	
-	public int getUserId() {
-		return userId;
+	public User getUserId() {
+		return user_id;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUserId(User userId) {
+		this.user_id = userId;
 	}
 	public String getAddress() {
 		return address;
