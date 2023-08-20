@@ -1,5 +1,6 @@
 package com.app.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,8 +23,8 @@ public class Admin {
 	private String adminname;
 	@Column(name="email")
 	private String email;
-	@OneToOne
-    @JoinColumn(name = "user_id")
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")
     private User user_id;
 	public Admin() {
 		super();

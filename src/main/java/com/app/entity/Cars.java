@@ -1,6 +1,7 @@
 package com.app.entity;
 
 import java.time.Year;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,27 +19,33 @@ import javax.persistence.Table;
 public class Cars {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "car_id ")
 	private int car_id ; 
 	
-	@ManyToOne
-    @JoinColumn(name = "categoryId")
+	@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "categoryId",nullable = false)
 	private Categories categoryId ; 
 	
-	@ManyToOne
-    @JoinColumn(name = "brandId")
+	@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "brandId",nullable = false)
 	private Brands brandId ; 
 	
-	@ManyToOne
-    @JoinColumn(name = "sellerId")
+	@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "sellerId",nullable = false)
 	private Seller sellerId ; 
 	
+	@OneToMany(mappedBy = "car_id",cascade = CascadeType.ALL)
+	private List<CarService> carService;
+	
+	@OneToMany(mappedBy = "car_id",cascade = CascadeType.ALL)
+	private List<Carts> carts;
+		
 	@Column(name = "model ")
 	private String model ; 
 	
 	@Column(name = " year")
-	private Year year ;
+	private String year ;
 	
 	@Column(name = "mileage ")
 	private int mileage ; 
@@ -53,12 +61,20 @@ public class Cars {
 	
 	@Column(name = "kmsDriven")
 	private int kmsDriven ;
+	
+	@Column(name="carImage")
+	private String carImage;
+	
+	@Column(name="city")
+	private String city;
+	
+	
 
 	public Cars() {
 		super();
 	}
 
-	public Cars(int carId, Categories categoryId, Brands brandId, Seller sellerId, String model, Year year, int mileage,
+	public Cars(int carId, Categories categoryId, Brands brandId, Seller sellerId, String model, String year, int mileage,
 			String color, double price, String fuelType, int kmsDriven) {
 		super();
 		this.car_id = carId;
@@ -72,14 +88,6 @@ public class Cars {
 		this.price = price;
 		this.fuelType = fuelType;
 		this.kmsDriven = kmsDriven;
-	}
-
-	public int getCarId() {
-		return car_id;
-	}
-
-	public void setCarId(int carId) {
-		this.car_id = carId;
 	}
 
 	public Categories getCategoryId() {
@@ -116,11 +124,11 @@ public class Cars {
 		this.model = model;
 	}
 
-	public Year getYear() {
+	public String getYear() {
 		return year;
 	}
 
-	public void setYear(Year year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 
@@ -163,6 +171,31 @@ public class Cars {
 	public void setKmsDriven(int kmsDriven) {
 		this.kmsDriven = kmsDriven;
 	}
+
+	public int getCar_id() {
+		return car_id;
+	}
+
+	public void setCar_id(int car_id) {
+		this.car_id = car_id;
+	}
+
+	public String getCarImage() {
+		return carImage;
+	}
+
+	public void setCarImage(String carImage) {
+		this.carImage = carImage;
+	}
+		
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
 	
 	
 }

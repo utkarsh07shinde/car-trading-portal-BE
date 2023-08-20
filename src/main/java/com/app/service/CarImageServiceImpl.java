@@ -1,5 +1,9 @@
 package com.app.service;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,6 +50,14 @@ public class CarImageServiceImpl implements CarImageService{
 	public void deleteCarImageById(int theId) {
 		// TODO Auto-generated method stub
 		carImageRepository.deleteById(theId);
+	}
+
+	@Override
+	public InputStream getResouce(String path, String fileName) throws FileNotFoundException {
+		// TODO Auto-generated method stub
+		String fullPath=path+File.separator+fileName;
+		InputStream is=new FileInputStream(fullPath);
+		return is;
 	}
 
 	

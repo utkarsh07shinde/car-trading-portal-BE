@@ -1,10 +1,13 @@
 package com.app.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,6 +27,16 @@ public class User {
 	private String email;
 	@Column(name="password")
 	private String password;
+	
+	@OneToOne(mappedBy = "user_id",cascade = CascadeType.ALL)
+	private Admin admin;
+	
+	@OneToOne(mappedBy = "user_id",cascade = CascadeType.ALL)
+	private Buyer buyer;
+	
+	@OneToOne(mappedBy = "user_id",cascade = CascadeType.ALL)
+	private Seller seller;
+	
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub

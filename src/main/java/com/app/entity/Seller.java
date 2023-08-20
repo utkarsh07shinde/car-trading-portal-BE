@@ -1,11 +1,16 @@
 package com.app.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -15,14 +20,14 @@ public class Seller {
 	
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "sellerId")
 	private int sellerId;
 	@Column(name = "sellerName")
 	private String sellerName;
 	@Column(name = "email")
 	private String email;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user_id;
 	@Column(name = "address")
@@ -31,6 +36,9 @@ public class Seller {
 	private String city;
 	@Column(name = "phone")
 	private String phone;
+	
+	@OneToMany(mappedBy = "sellerId",fetch = FetchType.LAZY)
+	private List<Cars> cars;
 	
 	public Seller() {
 		super();

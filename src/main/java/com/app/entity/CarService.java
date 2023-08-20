@@ -2,6 +2,7 @@ package com.app.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,12 +17,12 @@ import javax.persistence.Table;
 public class CarService {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "serviceId")
 	private int serviceId; 
 	
-	@ManyToOne
-    @JoinColumn(name = "car_id")
+	@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "car_id",nullable = false)
 	private Cars car_id ;
 	
 	@Column(name = "serviceDate ")

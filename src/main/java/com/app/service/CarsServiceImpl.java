@@ -51,4 +51,10 @@ public class CarsServiceImpl implements CarsService {
 		
 	}
 
+	@Override
+	public List<Cars> searchCarsByCity(String city) {
+		// TODO Auto-generated method stub
+		return carsRepository.searchCarsByCity(city);
+	}
+
 }
