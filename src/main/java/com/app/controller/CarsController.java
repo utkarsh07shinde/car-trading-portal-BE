@@ -2,12 +2,15 @@ package com.app.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.dao.BrandsRepository;
+import com.app.entity.Brands;
 import com.app.entity.Cars;
 import com.app.service.CarsService;
 
@@ -17,17 +20,31 @@ import com.app.service.CarsService;
 public class CarsController {
 
 	private CarsService carsService;
+	
+	@Autowired
+	private BrandsRepository brandsRepository; 
 
 	public CarsController(CarsService carsService) {
 		super();
 		this.carsService = carsService;
 	}
 	
-	@GetMapping("/cars/{city}")
+	@GetMapping("/cars/brand/{brandName}")
+	public List<Cars> getCarsByBrand(@PathVariable String brandName)
+	{
+		int brandId = brandsRepository.findByBrandName(brandName);
+		System.out.println(brandId);
+	   //return carsService.findCarById(brandId);
+		Brands brand = new Brands();
+		brand.setBrandId(brandId);
+		return carsService.findCarsByBrandId(brand);
+		//return carsService.findAllCars();
+	}
+	
+	@GetMapping("/cars/city/{city}")
 	public List<Cars> getCarsByCity(@PathVariable String city)
 	{
-		//return carsService.searchCarsByCity(city);
-		return carsService.findAllCars();
+		return carsService.findCarsByCity(city);
 	}
 	
 	@GetMapping("/cars")

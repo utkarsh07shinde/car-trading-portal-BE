@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.entity.Brands;
 import com.app.entity.CarService;
 import com.app.entity.Cars;
 import com.app.dao.CarsRepository;
@@ -52,9 +53,15 @@ public class CarsServiceImpl implements CarsService {
 	}
 
 	@Override
-	public List<Cars> searchCarsByCity(String city) {
+	public List<Cars> findCarsByCity(String city) {
 		// TODO Auto-generated method stub
-		return carsRepository.searchCarsByCity(city);
+		return carsRepository.getCarsByCity(city);
+	}
+
+	@Override
+	public List<Cars> findCarsByBrandId(Brands theBrands) {
+		// TODO Auto-generated method stub
+		return carsRepository.getCarsBybrandId(theBrands);
 	}
 
 }

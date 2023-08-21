@@ -37,8 +37,9 @@ public class Seller {
 	@Column(name = "phone")
 	private String phone;
 	
-	@OneToMany(mappedBy = "sellerId",fetch = FetchType.LAZY)
-	private List<Cars> cars;
+	//@OneToMany(mappedBy = "sellerId",fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "sellerId",fetch = FetchType.LAZY)
+	private Cars cars;
 	
 	public Seller() {
 		super();

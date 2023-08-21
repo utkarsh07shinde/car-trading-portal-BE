@@ -6,10 +6,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.app.entity.Brands;
 import com.app.entity.Cars;
 @Repository
 public interface CarsRepository extends JpaRepository<Cars, Integer>{
 
-	@Query("select c.color from Cars as c where city=:city")
-	public List<Cars> searchCarsByCity(String city);
+	
+	public List<Cars> getCarsByCity(String city);
+	
+	//@Query("select c.model FROM Cars as c WHERE c.brandId=:brandId ")
+	public List<Cars> getCarsBybrandId(Brands brandId);
 }

@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -31,15 +32,16 @@ public class Cars {
     @JoinColumn(name = "brandId",nullable = false)
 	private Brands brandId ; 
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	//@ManyToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "sellerId",nullable = false)
 	private Seller sellerId ; 
 	
 	@OneToMany(mappedBy = "car_id",cascade = CascadeType.ALL)
 	private List<CarService> carService;
 	
-	@OneToMany(mappedBy = "car_id",cascade = CascadeType.ALL)
-	private List<Carts> carts;
+	@OneToOne(mappedBy = "car_id",cascade = CascadeType.ALL)
+	private Carts carts;
 		
 	@Column(name = "model ")
 	private String model ; 
