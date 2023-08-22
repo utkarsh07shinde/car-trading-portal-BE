@@ -33,7 +33,7 @@ public class Cars {
 	private Brands brandId ; 
 	
 	//@ManyToOne(cascade = CascadeType.ALL)
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne()
     @JoinColumn(name = "sellerId",nullable = false)
 	private Seller sellerId ; 
 	

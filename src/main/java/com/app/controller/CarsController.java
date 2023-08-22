@@ -69,32 +69,24 @@ public class CarsController {
 		return carsService.findAllCars();
 	}
 	
-	@PostMapping("/cars/sell")
+	@PostMapping("/cars/registerCar")
 	public String addCars(@RequestBody Cars theCar)
 	{
-		System.out.println(theCar.getBrandId().getBrandName());
-		int brandId = brandsRepository.findByBrandName(theCar.getBrandId().getBrandName());
-		//System.out.println("UserID="+brandId);
 		
+		int brandId = brandsRepository.findByBrandName(theCar.getBrandId().getBrandName());
 		int categoryId= categoriesRepository.findByCategoryName(theCar.getCategoryId().getCategoryName());
-	    
-	   
-		System.out.println(theCar.getSellerId().toString());
-	//	System.out.println(theCar.getSellerId().getUser_id().toString());
 		int userId=userRepository.findByemail(theCar.getSellerId().getUser_id().getEmail());
-		System.out.println(userId);
-	//	int userId=userRepository.findByemail(theCar.getSellerId().getUser_id().getEmail());
-		//System.out.println("UserID="+userId);
+		int sellerId=sellerRepository.findByemail(theCar.getSellerId().getEmail());
+		System.out.println("Seller id="+sellerId);
+		User user= new User();
+		user.setUser_id(userId);
 		
 		theCar.getBrandId().setBrandId(brandId);
 		theCar.getCategoryId().setCategoryId(categoryId);
-		
-		System.out.println(categoryId);
-		User user= new User();
-		user.setUser_id(userId);
 		theCar.getSellerId().setUser_id(user);;
-	//	theCar.getSellerId().getUser_id().setUser_id(userId);
+		theCar.getSellerId().setSellerId(sellerId);
 		theCar.setCar_id(0);
+		
 		carsService.saveCar(theCar);
 		return "Car added succesfully";
 	}
