@@ -6,12 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dao.BrandsRepository;
+import com.app.dao.CategoriesRepository;
+import com.app.dao.SellerRepository;
+import com.app.dao.UserRepository;
 import com.app.entity.Brands;
 import com.app.entity.Cars;
+import com.app.entity.Seller;
+import com.app.entity.User;
 import com.app.service.CarsService;
 
 @RestController
@@ -23,6 +30,15 @@ public class CarsController {
 	
 	@Autowired
 	private BrandsRepository brandsRepository; 
+	
+	@Autowired
+	private CategoriesRepository categoriesRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
+	private SellerRepository sellerRepository; 
 
 	public CarsController(CarsService carsService) {
 		super();
@@ -51,6 +67,31 @@ public class CarsController {
 	public List<Cars> getAllCars()
 	{
 		return carsService.findAllCars();
+	}
+	
+	@PostMapping("/cars/sell")
+	public String addCars(@RequestBody Cars theCar)
+	{
+		System.out.println(theCar.getBrandId().getBrandName());
+		int brandId = brandsRepository.findByBrandName(theCar.getBrandId().getBrandName());
+		//System.out.println("UserID="+brandId);
+		
+		int categoryId= categoriesRepository.findByCategoryName(theCar.getCategoryId().getCategoryName());
+	    
+	   
+		System.out.println(theCar.getSellerId().toString());
+	//	System.out.println(theCar.getSellerId().getUser_id().toString());
+	//	User userId=userRepository.findByemail(theCar.getSellerId().getUser_id().getEmail());
+	//	int userId=userRepository.findByemail(theCar.getSellerId().getUser_id().getEmail());
+		//System.out.println("UserID="+userId);
+		
+		theCar.getBrandId().setBrandId(brandId);
+		theCar.getCategoryId().setCategoryId(categoryId);
+		System.out.println(categoryId);
+	//	theCar.getSellerId().getUser_id().setUser_id(userId);
+		theCar.setCar_id(0);
+		carsService.saveCar(theCar);
+		return "Car added succesfully";
 	}
 	
 }

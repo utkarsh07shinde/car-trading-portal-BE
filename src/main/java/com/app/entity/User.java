@@ -34,8 +34,9 @@ public class User {
 	@OneToOne(mappedBy = "user_id",cascade = CascadeType.ALL)
 	private Buyer buyer;
 	
-	@OneToOne(mappedBy = "user_id",cascade = CascadeType.ALL)
-	private Seller seller;
+	//@OneToOne(mappedBy = "user_id",cascade = CascadeType.ALL)
+	//@JoinColumn(name = "user_id")
+	//private Seller seller;
 	
 	public User() {
 		super();
@@ -47,12 +48,7 @@ public class User {
 		this.email = username;
 		this.password = password;
 	}
-	public int getUserId() {
-		return user_id;
-	}
-	public void setUserId(int userId) {
-		this.user_id = userId;
-	}
+	
 	
 	public int getUser_id() {
 		return user_id;

@@ -1,6 +1,6 @@
 package com.app.entity;
 
-import java.time.Year;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -24,11 +24,11 @@ public class Cars {
 	@Column(name = "car_id ")
 	private int car_id ; 
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne()
     @JoinColumn(name = "categoryId",nullable = false)
 	private Categories categoryId ; 
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne()
     @JoinColumn(name = "brandId",nullable = false)
 	private Brands brandId ; 
 	

@@ -28,7 +28,7 @@ public class Seller {
 	@Column(name = "email")
 	private String email;
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id",nullable = true)
     private User user_id;
 	@Column(name = "address")
 	private String address;
@@ -38,8 +38,8 @@ public class Seller {
 	private String phone;
 	
 	//@OneToMany(mappedBy = "sellerId",fetch = FetchType.LAZY)
-	@OneToOne(mappedBy = "sellerId",fetch = FetchType.LAZY)
-	private Cars cars;
+	//@OneToOne(mappedBy = "sellerId",fetch = FetchType.LAZY,orphanRemoval = true)
+	//private Cars cars;
 	
 	public Seller() {
 		super();
@@ -81,12 +81,12 @@ public class Seller {
 	}
 
 
-	public User getUserId() {
+	public User getUser_id() {
 		return user_id;
 	}
 
-	public void setUserId(User userId) {
-		this.user_id = userId;
+	public void setUser_id(User user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getAddress() {
