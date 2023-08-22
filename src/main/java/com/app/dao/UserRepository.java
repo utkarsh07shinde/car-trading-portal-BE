@@ -13,6 +13,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	public User validateUser(String email, String password);
 
 	@Query("select u.user_id FROM User as u WHERE u.email=:email")
-	public User findByemail(String email);
+	public int findByemail(String email);
 
 }

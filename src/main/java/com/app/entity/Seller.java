@@ -27,7 +27,7 @@ public class Seller {
 	private String sellerName;
 	@Column(name = "email")
 	private String email;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne()
 	@JoinColumn(name = "user_id",nullable = true)
     private User user_id;
 	@Column(name = "address")

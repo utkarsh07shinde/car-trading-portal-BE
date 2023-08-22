@@ -81,13 +81,18 @@ public class CarsController {
 	   
 		System.out.println(theCar.getSellerId().toString());
 	//	System.out.println(theCar.getSellerId().getUser_id().toString());
-	//	User userId=userRepository.findByemail(theCar.getSellerId().getUser_id().getEmail());
+		int userId=userRepository.findByemail(theCar.getSellerId().getUser_id().getEmail());
+		System.out.println(userId);
 	//	int userId=userRepository.findByemail(theCar.getSellerId().getUser_id().getEmail());
 		//System.out.println("UserID="+userId);
 		
 		theCar.getBrandId().setBrandId(brandId);
 		theCar.getCategoryId().setCategoryId(categoryId);
+		
 		System.out.println(categoryId);
+		User user= new User();
+		user.setUser_id(userId);
+		theCar.getSellerId().setUser_id(user);;
 	//	theCar.getSellerId().getUser_id().setUser_id(userId);
 		theCar.setCar_id(0);
 		carsService.saveCar(theCar);
