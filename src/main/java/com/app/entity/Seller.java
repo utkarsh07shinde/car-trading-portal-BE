@@ -112,6 +112,12 @@ public class Seller {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
+	@Override
+	public String toString() {
+		return "Seller [sellerId=" + sellerId + ", sellerName=" + sellerName + ", email=" + email + ", user_id="
+				+ user_id + ", address=" + address + ", city=" + city + ", phone=" + phone + "]";
+	}
 	
 	
 	

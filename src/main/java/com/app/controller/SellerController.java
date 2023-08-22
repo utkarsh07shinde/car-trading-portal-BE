@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.app.dao.SellerRepository;
 import com.app.dao.UserRepository;
 import com.app.entity.Seller;
+import com.app.entity.User;
 import com.app.service.SellerService;
 
 @RestController
@@ -17,14 +18,25 @@ import com.app.service.SellerService;
 @RequestMapping("/api")
 public class SellerController {
 
+	private SellerService sellerService;
+	@Autowired
+	private SellerRepository sellerRepository;
 	@Autowired
 	private UserRepository userRepository;
 	
-	@PostMapping("/Cars/sellerRegister")
+	@PostMapping("/cars/sellerRegister")
 	public String addSeller(@RequestBody Seller theSeller)
 	{
+		System.out.println(theSeller.toString());
 		int userId=userRepository.findByemail(theSeller.getUser_id().getEmail());
-		System.out.println(userId);
+		System.out.println("UserId="+userId);
+		User user =new User();
+		user.setUser_id(userId);
+		System.out.println("USER ID="+user.getUser_id());
+		theSeller.setUser_id(user);
+		System.out.println(theSeller.toString());
+		//sellerService.saveSeller(theSeller);
+		sellerRepository.save(theSeller);
 		return "seller added succesfully";
 	}
 }
