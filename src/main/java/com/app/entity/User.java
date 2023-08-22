@@ -34,9 +34,9 @@ public class User {
 	@OneToOne(mappedBy = "user_id",cascade = CascadeType.ALL)
 	private Buyer buyer;
 	
-	//@OneToOne(mappedBy = "user_id",cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "user_id",cascade = CascadeType.ALL)
 	//@JoinColumn(name = "user_id")
-	//private Seller seller;
+	private Seller seller;
 	
 	public User() {
 		super();
