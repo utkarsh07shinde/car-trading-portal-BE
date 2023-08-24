@@ -46,6 +46,7 @@ public class UserController {
 	@PostMapping("/registerUser")
 	public String registerUser(@RequestBody User theUser)
 	{
+		System.out.println(theUser.toString());
 		theUser.setUser_id(0);
 		System.out.println(theUser.toString());
 		userService.saveUser(theUser);

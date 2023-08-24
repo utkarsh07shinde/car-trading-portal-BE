@@ -42,14 +42,26 @@ public class User {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public User(int userId, String username, String password) {
+	
+	
+	
+	
+	public User(int user_id, String firstName, String lastName, String email, String password, Admin admin, Buyer buyer,
+			Seller seller) {
 		super();
-		this.user_id = userId;
-		this.email = username;
+		this.user_id = user_id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
 		this.password = password;
+		this.admin = admin;
+		this.buyer = buyer;
+		this.seller = seller;
 	}
-	
-	
+
+
+
+
 	public int getUser_id() {
 		return user_id;
 	}
@@ -84,6 +96,48 @@ public class User {
 	public String toString() {
 		return "User [user_id=" + user_id + ", firstname=" + firstName + ", lastname=" + lastName + ", email=" + email
 				+ ", password=" + password + "]";
+	}
+
+
+
+
+	public Admin getAdmin() {
+		return admin;
+	}
+
+
+
+
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
+
+
+
+
+	public Buyer getBuyer() {
+		return buyer;
+	}
+
+
+
+
+	public void setBuyer(Buyer buyer) {
+		this.buyer = buyer;
+	}
+
+
+
+
+	public Seller getSeller() {
+		return seller;
+	}
+
+
+
+
+	public void setSeller(Seller seller) {
+		this.seller = seller;
 	}
 	
 	

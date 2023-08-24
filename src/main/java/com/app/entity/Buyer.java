@@ -26,9 +26,8 @@ public class Buyer {
 	private String buyerName;
 	@Column(name = "email")
 	private String email;
-	
 	@OneToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id",nullable = true)
     private User user_id;
 	@Column(name = "address")
 	private String address;
@@ -96,6 +95,11 @@ public class Buyer {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	@Override
+	public String toString() {
+		return "Buyer [buyerId=" + buyerId + ", buyerName=" + buyerName + ", email=" + email + ", user_id=" + user_id
+				+ ", address=" + address + ", city=" + city + ", phone=" + phone + ", carts=" + carts + "]";
 	}
 	
 	

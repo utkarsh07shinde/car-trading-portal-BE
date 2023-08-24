@@ -23,7 +23,7 @@ public class Admin {
 	private String adminname;
 	@Column(name="email")
 	private String email;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne()
 	@JoinColumn(name = "user_id")
     private User user_id;
 	public Admin() {
@@ -60,6 +60,11 @@ public class Admin {
 	}
 	public void setUserId(User userId) {
 		this.user_id = userId;
+	}
+	@Override
+	public String toString() {
+		return "Admin [adminId=" + adminId + ", adminname=" + adminname + ", email=" + email + ", user_id=" + user_id
+				+ "]";
 	}
 	
 	
