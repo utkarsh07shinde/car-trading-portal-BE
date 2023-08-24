@@ -24,7 +24,7 @@ public class Admin {
 	@Column(name="email")
 	private String email;
 	@OneToOne()
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id",nullable = true)
     private User user_id;
 	public Admin() {
 		super();

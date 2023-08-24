@@ -96,50 +96,5 @@ public class User {
 	public String toString() {
 		return "User [user_id=" + user_id + ", firstname=" + firstName + ", lastname=" + lastName + ", email=" + email
 				+ ", password=" + password + "]";
-	}
-
-
-
-
-	public Admin getAdmin() {
-		return admin;
-	}
-
-
-
-
-	public void setAdmin(Admin admin) {
-		this.admin = admin;
-	}
-
-
-
-
-	public Buyer getBuyer() {
-		return buyer;
-	}
-
-
-
-
-	public void setBuyer(Buyer buyer) {
-		this.buyer = buyer;
-	}
-
-
-
-
-	public Seller getSeller() {
-		return seller;
-	}
-
-
-
-
-	public void setSeller(Seller seller) {
-		this.seller = seller;
-	}
-	
-	
-	
+	}	
 }
