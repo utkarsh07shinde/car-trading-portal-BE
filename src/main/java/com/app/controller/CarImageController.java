@@ -33,11 +33,12 @@ public class CarImageController {
 	}
 	
 	@GetMapping(value = "images/{imageName}",produces = MediaType.IMAGE_JPEG_VALUE)
-	public void downloadImage(@PathVariable("imageName") String imageName, HttpServletResponse response) throws IOException
+	public String downloadImage(@PathVariable("imageName") String imageName, HttpServletResponse response) throws IOException
 	{
 		InputStream resource= this.carImageService.getResouce(path, imageName);
 		response.setContentType(MediaType.IMAGE_JPEG_VALUE);
 		StreamUtils.copy(resource, response.getOutputStream());
+		return "Image Display Succesfully";
 	}
 	
 }

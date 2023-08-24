@@ -11,4 +11,7 @@ public interface CategoriesRepository extends JpaRepository<Categories, Integer>
 
 	@Query("select c.categoryId FROM Categories as c WHERE c.categoryName=:categoryName")
 	public int findByCategoryName(String categoryName);
+	
+	@Query("select c.categoryName from Categories as c where c.categoryName=:categoryName")
+	public String findcategoryName(String categoryName);
 }

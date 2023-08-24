@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "cars")
 public class Cars {
@@ -33,11 +35,12 @@ public class Cars {
 	private Brands brandId ; 
 	
 	//@ManyToOne(cascade = CascadeType.ALL)
+	//@JsonIgnore
 	@OneToOne()
     @JoinColumn(name = "sellerId",nullable = false)
 	private Seller sellerId ; 
 	
-	@OneToMany(mappedBy = "car_id",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "car",cascade = CascadeType.ALL)
 	private List<CarService> carService;
 	
 	@OneToOne(mappedBy = "car_id",cascade = CascadeType.ALL)
@@ -196,6 +199,14 @@ public class Cars {
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+
+	@Override
+	public String toString() {
+		return "Cars [car_id=" + car_id + ", categoryId=" + categoryId + ", brandId=" + brandId + ", sellerId="
+				+ sellerId + ", carService=" + carService + ", carts=" + carts + ", model=" + model + ", year=" + year
+				+ ", mileage=" + mileage + ", color=" + color + ", price=" + price + ", fuelType=" + fuelType
+				+ ", kmsDriven=" + kmsDriven + ", carImage=" + carImage + ", city=" + city + "]";
 	}
 
 	

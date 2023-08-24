@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = " CarService ")
 public class CarService {
@@ -21,9 +23,10 @@ public class CarService {
 	@Column(name = "serviceId")
 	private int serviceId; 
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@JsonIgnore
+	@ManyToOne()
     @JoinColumn(name = "car_id",nullable = false)
-	private Cars car_id ;
+	private Cars car ;
 	
 	@Column(name = "serviceDate ")
 	private Date serviceDate ;
@@ -38,7 +41,7 @@ public class CarService {
 	public CarService(int serviceId, Cars carId, Date serviceDate, double serviceCost) {
 		super();
 		this.serviceId = serviceId;
-		this.car_id = carId;
+		this.car = carId;
 		this.serviceDate = serviceDate;
 		this.serviceCost = serviceCost;
 	}
@@ -51,13 +54,6 @@ public class CarService {
 		this.serviceId = serviceId;
 	}
 
-	public Cars getCarId() {
-		return car_id;
-	}
-
-	public void setCarId(Cars carId) {
-		this.car_id = carId;
-	}
 
 	public Date getServiceDate() {
 		return serviceDate;
@@ -73,6 +69,20 @@ public class CarService {
 
 	public void setServiceCost(double serviceCost) {
 		this.serviceCost = serviceCost;
+	}
+
+	public Cars getCar() {
+		return car;
+	}
+
+	public void setCar(Cars car) {
+		this.car = car;
+	}
+
+	@Override
+	public String toString() {
+		return "CarService [serviceId=" + serviceId + ", car=" + car + ", serviceDate=" + serviceDate + ", serviceCost="
+				+ serviceCost + "]";
 	}
 	
 	

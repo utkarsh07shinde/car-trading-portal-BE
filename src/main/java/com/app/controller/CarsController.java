@@ -72,6 +72,16 @@ public class CarsController {
 	@PostMapping("/cars/registerCar")
 	public String addCars(@RequestBody Cars theCar)
 	{
+		//String brandName= brandsRepository.findBrandName(theCar.getBrandId().getBrandName());
+		//System.out.println("BrandName="+brandName);
+		if(brandsRepository.findBrandName(theCar.getBrandId().getBrandName())==null)
+		{
+			brandsRepository.save(theCar.getBrandId());
+		}
+		if(categoriesRepository.findcategoryName(theCar.getCategoryId().getCategoryName())==null)
+		{
+			 categoriesRepository.save(theCar.getCategoryId());
+		}
 		
 		int brandId = brandsRepository.findByBrandName(theCar.getBrandId().getBrandName());
 		int categoryId= categoriesRepository.findByCategoryName(theCar.getCategoryId().getCategoryName());
@@ -86,7 +96,6 @@ public class CarsController {
 		theCar.getSellerId().setUser_id(user);;
 		theCar.getSellerId().setSellerId(sellerId);
 		theCar.setCar_id(0);
-		
 		carsService.saveCar(theCar);
 		return "Car added succesfully";
 	}

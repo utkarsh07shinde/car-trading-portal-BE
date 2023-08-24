@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "seller")
 public class Seller {
@@ -27,6 +29,7 @@ public class Seller {
 	private String sellerName;
 	@Column(name = "email")
 	private String email;
+	//@JsonIgnore
 	@OneToOne()
 	@JoinColumn(name = "user_id",nullable = true)
     private User user_id;
