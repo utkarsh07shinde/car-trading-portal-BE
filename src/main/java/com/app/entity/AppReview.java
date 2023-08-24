@@ -1,5 +1,6 @@
 package com.app.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -22,12 +23,12 @@ public class AppReview {
 	@Column(name="reviewText")
 	private String reviewText ;
 	@Column(name="reviewDate")
-	private Date reviewDate;
+	private LocalDateTime reviewDate;
 	public AppReview() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public AppReview(int reviewId, int rating, String reviewText, Date reviewDate) {
+	public AppReview(int reviewId, int rating, String reviewText, LocalDateTime reviewDate) {
 		super();
 		this.reviewId = reviewId;
 		this.rating = rating;
@@ -52,11 +53,11 @@ public class AppReview {
 	public void setReviewText(String reviewText) {
 		this.reviewText = reviewText;
 	}
-	public Date getReviewDate() {
+	public LocalDateTime getReviewDate() {
 		return reviewDate;
 	}
-	public void setReviewDate(Date reviewDate) {
-		this.reviewDate = reviewDate;
+	public void setReviewDate(LocalDateTime now) {
+		this.reviewDate = now;
 	}
 	
 	

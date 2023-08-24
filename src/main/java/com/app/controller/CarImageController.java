@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.app.entity.CarImage;
 import com.app.service.CarImageService;
 
 @RestController
@@ -35,7 +36,7 @@ public class CarImageController {
 		this.carImageService = carImageService;
 	}
 	
-	@GetMapping(value = "images/{imageName}",produces = MediaType.IMAGE_JPEG_VALUE)
+	@GetMapping(value = "/cars/images/{imageName}",produces = MediaType.IMAGE_JPEG_VALUE)
 	public String downloadImage(@PathVariable("imageName") String imageName, HttpServletResponse response) throws IOException
 	{
 		InputStream resource= this.carImageService.getResouce(path, imageName);
@@ -48,6 +49,9 @@ public class CarImageController {
 	public String uploadImage(@RequestParam("carImage") MultipartFile carImage) throws IOException
 	{
 		String fileName=this.carImageService.uploadImage(path, carImage);
+		CarImage image=new CarImage();
+		image.setImageUrl(fileName);
+		carImageService.saveCarImage(image);
 		return fileName;
 	}
 	

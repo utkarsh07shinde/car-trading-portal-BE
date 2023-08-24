@@ -23,36 +23,40 @@ public class Carts {
 	private int cartId;
 	
 	
-	@Column(name = "cartDate")
-	private Date cartDate;
+//	@Column(name = "cartDate")
+//	private Date cartDate;
 	
 	@ManyToOne
     @JoinColumn(name = "buyerId")
 	private Buyer buyerId;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne()
     @JoinColumn(name = "car_id")
 	private Cars car_id;
 	
-	@Column(name = "quantity")
-	private int quantity;
+//	@Column(name = "quantity")
+//	private int quantity;
 	
-	@Column(name = "totalPrice")
-	private double totalPrice;
+	@Column(name = "price")
+	private double price;
+
+	
 
 	public Carts() {
 		super();
 	}
 
-	public Carts(int cartId, Date cartDate, Buyer buyerId, Cars carId, int quantity, double totalPrice) {
+
+
+	public Carts(int cartId, Buyer buyerId, Cars car_id, double price) {
 		super();
 		this.cartId = cartId;
-		this.cartDate = cartDate;
 		this.buyerId = buyerId;
-		this.car_id = carId;
-		this.quantity = quantity;
-		this.totalPrice = totalPrice;
+		this.car_id = car_id;
+		this.price = price;
 	}
+
+
 
 	public int getCartId() {
 		return cartId;
@@ -62,13 +66,7 @@ public class Carts {
 		this.cartId = cartId;
 	}
 
-	public Date getCartDate() {
-		return cartDate;
-	}
 
-	public void setCartDate(Date cartDate) {
-		this.cartDate = cartDate;
-	}
 
 	public Buyer getBuyerId() {
 		return buyerId;
@@ -78,31 +76,35 @@ public class Carts {
 		this.buyerId = buyerId;
 	}
 
-	public Cars getCarId() {
+
+	public Cars getCar_id() {
 		return car_id;
 	}
 
-	public void setCarId(Cars carId) {
-		this.car_id = carId;
+
+
+	public void setCar_id(Cars car_id) {
+		this.car_id = car_id;
 	}
 
-	public int getQuantity() {
-		return quantity;
+
+
+	public double getPrice() {
+		return price;
 	}
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
-	public double getTotalPrice() {
-		return totalPrice;
-	}
 
-	public void setTotalPrice(double totalPrice) {
-		this.totalPrice = totalPrice;
+
+	@Override
+	public String toString() {
+		return "Carts [cartId=" + cartId + ", buyerId=" + buyerId + ", car_id=" + car_id + ", price=" + price + "]";
 	}
-	
-	
 
 }
 

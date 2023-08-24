@@ -78,7 +78,7 @@ public class CarsController {
 	
 	
 	@PostMapping("/cars/registerCar")
-	public String addCars(@RequestBody Cars theCar,@RequestParam("carImage") MultipartFile carImage) throws IOException
+	public String addCars(@RequestBody Cars theCar) throws IOException
 	{
 		//String brandName= brandsRepository.findBrandName(theCar.getBrandId().getBrandName());
 		//System.out.println("BrandName="+brandName);
@@ -105,9 +105,9 @@ public class CarsController {
 		theCar.getSellerId().setSellerId(sellerId);
 		theCar.setCar_id(0);
 		
-		String fileName=this.carsService.uploadImage(path, carImage);
+	//	String fileName=this.carsService.uploadImage(path, carImage);
 		
-		theCar.setCarImage(fileName);
+	//	theCar.setCarImage(fileName);
 		
 		carsService.saveCar(theCar);
 		return "Car added succesfully";
