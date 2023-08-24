@@ -1,15 +1,19 @@
 package com.app.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.app.dao.BrandsRepository;
 import com.app.dao.CategoriesRepository;
@@ -39,6 +43,9 @@ public class CarsController {
 	
 	@Autowired
 	private SellerRepository sellerRepository; 
+	
+	@Value("${project.image}")
+	private String path;
 
 	public CarsController(CarsService carsService) {
 		super();
@@ -71,7 +78,7 @@ public class CarsController {
 	
 	
 	@PostMapping("/cars/registerCar")
-	public String addCars(@RequestBody Cars theCar)
+	public String addCars(@RequestBody Cars theCar,@RequestParam("carImage") MultipartFile carImage) throws IOException
 	{
 		//String brandName= brandsRepository.findBrandName(theCar.getBrandId().getBrandName());
 		//System.out.println("BrandName="+brandName);
@@ -97,6 +104,11 @@ public class CarsController {
 		theCar.getSellerId().setUser_id(user);;
 		theCar.getSellerId().setSellerId(sellerId);
 		theCar.setCar_id(0);
+		
+		String fileName=this.carsService.uploadImage(path, carImage);
+		
+		theCar.setCarImage(fileName);
+		
 		carsService.saveCar(theCar);
 		return "Car added succesfully";
 	}
