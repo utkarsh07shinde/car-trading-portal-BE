@@ -43,8 +43,8 @@ public class Cars {
 	@OneToMany(mappedBy = "car",cascade = CascadeType.ALL)
 	private List<CarService> carService;
 	
-	@OneToOne(mappedBy = "car_id",cascade = CascadeType.ALL)
-	private Carts carts;
+	//@OneToOne()
+	//private Carts carts;
 		
 	@Column(name = "model ")
 	private String model ; 
@@ -201,13 +201,7 @@ public class Cars {
 		this.city = city;
 	}
 
-	@Override
-	public String toString() {
-		return "Cars [car_id=" + car_id + ", categoryId=" + categoryId + ", brandId=" + brandId + ", sellerId="
-				+ sellerId + ", carService=" + carService + ", carts=" + carts + ", model=" + model + ", year=" + year
-				+ ", mileage=" + mileage + ", color=" + color + ", price=" + price + ", fuelType=" + fuelType
-				+ ", kmsDriven=" + kmsDriven + ", carImage=" + carImage + ", city=" + city + "]";
-	}
+	
 
 	
 	

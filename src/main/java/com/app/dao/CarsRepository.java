@@ -16,4 +16,7 @@ public interface CarsRepository extends JpaRepository<Cars, Integer>{
 	
 	//@Query("select c.model FROM Cars as c WHERE c.brandId=:brandId ")
 	public List<Cars> getCarsBybrandId(Brands brandId);
+	
+//	@Query("FROM Cars as c WHERE c.brandId=:brandId AND c.city=city ")
+	List<Cars> findByBrandIdAndCity(Brands brandId, String city);
 }

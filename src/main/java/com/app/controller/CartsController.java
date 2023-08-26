@@ -25,6 +25,7 @@ public class CartsController {
 	@Autowired
 	private CartsService cartService;
 	
+	@Autowired
 	private CartsRepository cartsRepository;
 	
     @PostMapping("/cars/addToCarts")
@@ -38,8 +39,18 @@ public class CartsController {
     @GetMapping("/cars/carts/{buyerId}")
     public List<Carts> getCarts(@PathVariable int buyerId)
     {
+    	System.out.println(buyerId);
     	Buyer buyer=new Buyer();
     	buyer.setBuyerId(buyerId);
-    	return cartsRepository.getCartsBybuyerId(buyer);
+    	System.out.println(buyer.getBuyerId());
+    	List<Carts> carts= cartsRepository.getCartsBybuyerId(buyer);
+    	System.out.println(carts.toString());
+    	return carts;
     }
+    
+    @GetMapping("/cars/carts")
+	public List<Carts> getAllCarts()
+	{
+		return cartsRepository.findAll();
+	}
 }

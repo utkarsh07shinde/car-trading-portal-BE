@@ -11,5 +11,6 @@ import com.app.entity.Carts;
 @Repository
 public interface CartsRepository extends JpaRepository<Carts, Integer> {
 
+	
 	public List<Carts> getCartsBybuyerId(Buyer buyerId);
 }

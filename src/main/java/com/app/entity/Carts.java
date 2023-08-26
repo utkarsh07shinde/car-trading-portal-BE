@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "carts")
 public class Carts {
@@ -27,10 +29,12 @@ public class Carts {
 //	private Date cartDate;
 	
 	@ManyToOne
-    @JoinColumn(name = "buyerId")
+//	@JsonIgnore
+    @JoinColumn(name = "buyerId",nullable = false)
 	private Buyer buyerId;
 	
 	@OneToOne()
+	//@JsonIgnore
     @JoinColumn(name = "car_id")
 	private Cars car_id;
 	

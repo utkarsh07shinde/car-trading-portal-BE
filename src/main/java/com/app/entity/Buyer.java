@@ -39,6 +39,7 @@ public class Buyer {
 	@OneToMany(mappedBy = "buyerId",cascade = CascadeType.ALL)
 	private List<Carts> carts;
 	
+
 	public Buyer() {
 		super();
 		// TODO Auto-generated constructor stub

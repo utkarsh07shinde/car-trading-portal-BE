@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.app.dao.BrandsRepository;
+import com.app.dao.CarsRepository;
 import com.app.dao.CategoriesRepository;
 import com.app.dao.SellerRepository;
 import com.app.dao.UserRepository;
@@ -31,6 +32,9 @@ import com.app.service.CarsService;
 public class CarsController {
 
 	private CarsService carsService;
+	
+	@Autowired
+	private CarsRepository carsRepository;
 	
 	@Autowired
 	private BrandsRepository brandsRepository; 
@@ -62,6 +66,20 @@ public class CarsController {
 		brand.setBrandId(brandId);
 		return carsService.findCarsByBrandId(brand);
 		//return carsService.findAllCars();
+	}
+	
+	@GetMapping("/cars/brandCity")
+	//@PostMapping("/cars/brandCity")
+	public List<Cars> getCarsByBrandCity(@RequestParam("brandName") String brandName,@RequestParam("city") String city )
+	{
+		System.out.println(brandName);
+		System.out.println(city);
+		int brandId = brandsRepository.findByBrandName(brandName);
+		System.out.println(brandId);
+	   //return carsService.findCarById(brandId);
+		Brands brand = new Brands();
+		brand.setBrandId(brandId);
+		return carsRepository.findByBrandIdAndCity(brand, city) ;
 	}
 	
 	@GetMapping("/cars/city/{city}")
