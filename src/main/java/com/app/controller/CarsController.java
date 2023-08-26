@@ -1,6 +1,7 @@
 package com.app.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +81,12 @@ public class CarsController {
 		Brands brand = new Brands();
 		brand.setBrandId(brandId);
 		return carsRepository.findByBrandIdAndCity(brand, city) ;
+	}
+	
+	@GetMapping("/cars/city")
+	public List<String> getAllCity()
+	{
+		return carsRepository.findAllCities();
 	}
 	
 	@GetMapping("/cars/city/{city}")
