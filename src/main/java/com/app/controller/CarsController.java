@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -144,6 +145,35 @@ public class CarsController {
 		
 		carsService.saveCar(theCar);
 		return "Car added succesfully";
+	}
+	
+	@PutMapping("/cars/updateCars")
+	public String updateCars(@RequestBody Cars theCar)
+	{
+		if(brandsRepository.findBrandName(theCar.getBrandId().getBrandName())==null)
+		{
+			brandsRepository.save(theCar.getBrandId());
+		}
+		if(categoriesRepository.findcategoryName(theCar.getCategoryId().getCategoryName())==null)
+		{
+			 categoriesRepository.save(theCar.getCategoryId());
+		}
+		
+		int brandId = brandsRepository.findByBrandName(theCar.getBrandId().getBrandName());
+		int categoryId= categoriesRepository.findByCategoryName(theCar.getCategoryId().getCategoryName());
+		int userId=userRepository.findByemail(theCar.getSellerId().getUser_id().getEmail());
+		int sellerId=sellerRepository.findByemail(theCar.getSellerId().getEmail());
+		System.out.println("Seller id="+sellerId);
+		User user= new User();
+		user.setUser_id(userId);
+		
+		theCar.getBrandId().setBrandId(brandId);
+		theCar.getCategoryId().setCategoryId(categoryId);
+		theCar.getSellerId().setUser_id(user);;
+		theCar.getSellerId().setSellerId(sellerId);
+	//	theCar.setCar_id(0);
+		carsService.saveCar(theCar);
+		return "Car update succesfully";
 	}
 	
 }
