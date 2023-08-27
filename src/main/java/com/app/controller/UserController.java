@@ -1,5 +1,6 @@
 package com.app.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,7 +24,7 @@ public class UserController {
 	
 
 	@PostMapping("/loginUser")
-	public String submitUser(@RequestBody User user)
+	public ResponseEntity<User>  submitUser(@RequestBody User user)
 	{
 		System.out.println(user.toString());
 		User u = null;
@@ -35,11 +36,11 @@ public class UserController {
 		
 		if(u==null)
 		{
-			return "error utkarsh";
+			return ResponseEntity.notFound().build();
 		}
 		else
 		{
-			return "login-success";
+			return ResponseEntity.ok(u);
 		}
 	}
 	
