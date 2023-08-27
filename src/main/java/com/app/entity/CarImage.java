@@ -18,9 +18,9 @@ public class CarImage {
 	@Column(name = "imageId")
 	private int imageId ; 
 	
-	@ManyToOne
-    @JoinColumn(name = "car_id",referencedColumnName = "car_id")
-	private Cars car_id;  
+	//@ManyToOne
+    //@JoinColumn(name = "car_id")
+	//private Cars car_id;  
 	
 	@Column(name="imageUrl")
 	private String imageUrl ;
@@ -32,7 +32,7 @@ public class CarImage {
 	public CarImage(int imageId, Cars carId, String imageUrl) {
 		super();
 		this.imageId = imageId;
-		this.car_id = carId;
+	//	this.car_id = carId;
 		this.imageUrl = imageUrl;
 	}
 	public int getImageId() {
@@ -41,12 +41,12 @@ public class CarImage {
 	public void setImageId(int imageId) {
 		this.imageId = imageId;
 	}
-	public Cars getCarId() {
-		return car_id;
-	}
-	public void setCarId(Cars carId) {
-		this.car_id = carId;
-	}
+//	public Cars getCarId() {
+//		return car_id;
+//	}
+//	public void setCarId(Cars carId) {
+//		this.car_id = carId;
+//	}
 	public String getImageUrl() {
 		return imageUrl;
 	}
