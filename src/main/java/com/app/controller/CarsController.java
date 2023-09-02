@@ -128,20 +128,26 @@ public class CarsController {
 		int brandId = brandsRepository.findByBrandName(theCar.getBrandId().getBrandName());
 		int categoryId= categoriesRepository.findByCategoryName(theCar.getCategoryId().getCategoryName());
 		int userId=userRepository.findByemail(theCar.getSellerId().getUser_id().getEmail());
-		int sellerId=sellerRepository.findByemail(theCar.getSellerId().getEmail());
-		System.out.println("Seller id="+sellerId);
+		
+	//	String checkSeller=sellerRepository.getByemail(theCar.getSellerId().getEmail());
+		
 		User user= new User();
 		user.setUser_id(userId);
 		
 		theCar.getBrandId().setBrandId(brandId);
 		theCar.getCategoryId().setCategoryId(categoryId);
-		theCar.getSellerId().setUser_id(user);;
-		theCar.getSellerId().setSellerId(sellerId);
+		theCar.getSellerId().setUser_id(user);
+		
 		theCar.setCar_id(0);
-		
-	//	String fileName=this.carsService.uploadImage(path, carImage);
-		
-	//	theCar.setCarImage(fileName);
+		if(sellerRepository.getByemail(theCar.getSellerId().getEmail()) == null)
+		{
+			sellerRepository.save(theCar.getSellerId());
+		}
+		else {
+			int sellerId=sellerRepository.findByemail(theCar.getSellerId().getEmail());
+			System.out.println("Seller id="+sellerId);
+			theCar.getSellerId().setSellerId(sellerId);
+		}
 		
 		carsService.saveCar(theCar);
 		return "Car added succesfully";
@@ -162,16 +168,27 @@ public class CarsController {
 		int brandId = brandsRepository.findByBrandName(theCar.getBrandId().getBrandName());
 		int categoryId= categoriesRepository.findByCategoryName(theCar.getCategoryId().getCategoryName());
 		int userId=userRepository.findByemail(theCar.getSellerId().getUser_id().getEmail());
-		int sellerId=sellerRepository.findByemail(theCar.getSellerId().getEmail());
-		System.out.println("Seller id="+sellerId);
+		
+	//	String checkSeller=sellerRepository.getByemail(theCar.getSellerId().getEmail());
+		
 		User user= new User();
 		user.setUser_id(userId);
 		
 		theCar.getBrandId().setBrandId(brandId);
 		theCar.getCategoryId().setCategoryId(categoryId);
-		theCar.getSellerId().setUser_id(user);;
-		theCar.getSellerId().setSellerId(sellerId);
-	//	theCar.setCar_id(0);
+		theCar.getSellerId().setUser_id(user);
+		
+		theCar.setCar_id(0);
+		if(sellerRepository.getByemail(theCar.getSellerId().getEmail()) == null)
+		{
+			sellerRepository.save(theCar.getSellerId());
+		}
+		else {
+			int sellerId=sellerRepository.findByemail(theCar.getSellerId().getEmail());
+			System.out.println("Seller id="+sellerId);
+			theCar.getSellerId().setSellerId(sellerId);
+		}
+		
 		carsService.saveCar(theCar);
 		return "Car update succesfully";
 	}
